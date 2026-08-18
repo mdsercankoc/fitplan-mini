@@ -3,201 +3,158 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>FitPlan Mini</title>
+  <title>FitPlan Mini v2</title>
   <meta name="theme-color" content="#16a34a" />
   <style>
-    * {
-      box-sizing: border-box;
-      font-family: Arial, sans-serif;
-    }
-
-    body {
-      margin: 0;
-      background: #f4f7f5;
-      color: #172017;
-    }
-
-    header {
-      background: linear-gradient(135deg, #16a34a, #0f766e);
-      color: white;
-      padding: 24px 18px;
-      text-align: center;
-    }
-
-    header h1 {
-      margin: 0;
-      font-size: 28px;
-    }
-
-    header p {
-      margin: 8px 0 0;
-      opacity: 0.95;
-    }
-
-    main {
-      max-width: 760px;
-      margin: 0 auto;
-      padding: 18px;
-    }
-
-    .card {
-      background: white;
-      border-radius: 16px;
-      padding: 18px;
-      margin-bottom: 16px;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.06);
-    }
-
-    label {
-      display: block;
-      margin-top: 12px;
-      font-weight: bold;
-      font-size: 14px;
-    }
-
-    input, select, textarea {
-      width: 100%;
-      margin-top: 6px;
-      padding: 12px;
-      border: 1px solid #d1d5db;
-      border-radius: 10px;
-      font-size: 15px;
-      background: white;
-    }
-
-    button {
-      width: 100%;
-      padding: 13px;
-      margin-top: 14px;
-      border: none;
-      border-radius: 12px;
-      background: #16a34a;
-      color: white;
-      font-size: 16px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    button.secondary {
-      background: #0f766e;
-    }
-
-    button.danger {
-      background: #dc2626;
-    }
-
-    .notice {
-      background: #fff7ed;
-      color: #7c2d12;
-      border: 1px solid #fed7aa;
-      padding: 12px;
-      border-radius: 12px;
-      font-size: 14px;
-      line-height: 1.5;
-    }
-
-    .plan-day {
-      border-left: 5px solid #16a34a;
-      padding: 12px;
-      background: #f0fdf4;
-      border-radius: 10px;
-      margin-bottom: 10px;
-    }
-
-    .plan-day h3 {
-      margin: 0 0 8px;
-    }
-
-    ul {
-      margin-top: 6px;
-      padding-left: 20px;
-    }
-
-    .small {
-      font-size: 13px;
-      color: #4b5563;
-      line-height: 1.5;
-    }
-
-    .hidden {
-      display: none;
-    }
-
-    .tag {
-      display: inline-block;
-      background: #dcfce7;
-      color: #166534;
-      padding: 5px 9px;
-      border-radius: 999px;
-      font-size: 12px;
-      margin: 4px 4px 4px 0;
-    }
-
-    textarea {
-      min-height: 160px;
-    }
+    * { box-sizing: border-box; font-family: Arial, sans-serif; }
+    body { margin: 0; background: #f4f7f5; color: #172017; }
+    header { background: linear-gradient(135deg, #16a34a, #0f766e); color: white; padding: 24px 18px; text-align: center; }
+    header h1 { margin: 0; font-size: 28px; }
+    header p { margin: 8px 0 0; opacity: 0.95; }
+    main { max-width: 860px; margin: 0 auto; padding: 18px; }
+    .card { background: white; border-radius: 16px; padding: 18px; margin-bottom: 16px; box-shadow: 0 6px 20px rgba(0,0,0,0.06); }
+    label { display: block; margin-top: 12px; font-weight: bold; font-size: 14px; }
+    input, select, textarea { width: 100%; margin-top: 6px; padding: 12px; border: 1px solid #d1d5db; border-radius: 10px; font-size: 15px; background: white; }
+    button { width: 100%; padding: 13px; margin-top: 14px; border: none; border-radius: 12px; background: #16a34a; color: white; font-size: 16px; font-weight: bold; cursor: pointer; }
+    button.secondary { background: #0f766e; }
+    button.warning { background: #d97706; }
+    button.danger { background: #dc2626; }
+    .notice { background: #fff7ed; color: #7c2d12; border: 1px solid #fed7aa; padding: 12px; border-radius: 12px; font-size: 14px; line-height: 1.5; }
+    .info { background: #ecfdf5; color: #14532d; border: 1px solid #bbf7d0; padding: 12px; border-radius: 12px; font-size: 14px; line-height: 1.5; }
+    .plan-day { border-left: 5px solid #16a34a; padding: 12px; background: #f0fdf4; border-radius: 10px; margin-bottom: 10px; }
+    .plan-day h3 { margin: 0 0 8px; }
+    .meal-day { border-left: 5px solid #0f766e; padding: 12px; background: #ecfeff; border-radius: 10px; margin-bottom: 10px; }
+    .meal-day h3 { margin: 0 0 8px; }
+    ul { margin-top: 6px; padding-left: 20px; }
+    .small { font-size: 13px; color: #4b5563; line-height: 1.5; }
+    .hidden { display: none; }
+    .tag { display: inline-block; background: #dcfce7; color: #166534; padding: 5px 9px; border-radius: 999px; font-size: 12px; margin: 4px 4px 4px 0; }
+    textarea { min-height: 220px; }
+    .grid { display: grid; grid-template-columns: 1fr; gap: 10px; }
+    @media (min-width: 720px) { .grid { grid-template-columns: 1fr 1fr; } }
   </style>
 </head>
 <body>
   <header>
-    <h1>FitPlan Mini</h1>
-    <p>Rumuzla çalışan basit spor ve beslenme planlayıcı</p>
+    <h1>FitPlan Mini v2</h1>
+    <p>Rumuzla çalışan, şifresiz, cihazda kayıt tutan spor ve beslenme planlayıcı</p>
   </header>
 
   <main>
     <section class="card">
       <div class="notice">
         Bu uygulama tıbbi tavsiye vermez. Genel spor ve beslenme önerileri sunar.
-        Kronik hastalık, sakatlık, hamilelik, özel diyet veya sağlık sorunun varsa bir uzmana danış.
-        Veriler sadece bu cihazda saklanır.
+        Kronik hastalık, sakatlık, hamilelik, özel diyet, ilaç kullanımı veya sağlık sorunun varsa bir uzmana danış.
+        Girilen bilgiler sadece bu cihazda saklanır; herhangi bir sunucuya gönderilmez.
       </div>
     </section>
 
     <section class="card">
       <h2>Profil</h2>
 
-      <label>Rumuz</label>
-      <input id="nickname" placeholder="Örn: Kartal, Mavi, Rocky" />
+      <div class="grid">
+        <div>
+          <label>Rumuz</label>
+          <input id="nickname" placeholder="Örn: Kartal, Mavi, Rocky" />
+        </div>
 
-      <label>Hedef</label>
-      <select id="goal">
-        <option value="kilo_verme">Kilo vermek</option>
-        <option value="kas_kazanma">Kas kazanmak</option>
-        <option value="form_koruma">Form korumak</option>
-        <option value="kondisyon">Kondisyon artırmak</option>
-      </select>
+        <div>
+          <label>Hedef</label>
+          <select id="goal">
+            <option value="kilo_verme">Kilo vermek</option>
+            <option value="kas_kazanma">Kas kazanmak</option>
+            <option value="form_koruma">Form korumak</option>
+            <option value="kondisyon">Kondisyon artırmak</option>
+          </select>
+        </div>
 
-      <label>Seviye</label>
-      <select id="level">
-        <option value="baslangic">Başlangıç</option>
-        <option value="orta">Orta</option>
-        <option value="ileri">İleri</option>
-      </select>
+        <div>
+          <label>Seviye</label>
+          <select id="level">
+            <option value="baslangic">Başlangıç</option>
+            <option value="orta">Orta</option>
+            <option value="ileri">İleri</option>
+          </select>
+        </div>
 
-      <label>Haftada kaç gün spor?</label>
-      <select id="days">
-        <option value="2">2 gün</option>
-        <option value="3" selected>3 gün</option>
-        <option value="4">4 gün</option>
-        <option value="5">5 gün</option>
-      </select>
+        <div>
+          <label>Haftada kaç gün spor?</label>
+          <select id="days">
+            <option value="2">2 gün</option>
+            <option value="3" selected>3 gün</option>
+            <option value="4">4 gün</option>
+            <option value="5">5 gün</option>
+          </select>
+        </div>
 
-      <label>Spor yeri</label>
-      <select id="place">
-        <option value="ev">Evde</option>
-        <option value="salon">Salonda</option>
-        <option value="dis">Dış mekanda</option>
-      </select>
+        <div>
+          <label>Spor yeri</label>
+          <select id="place">
+            <option value="ev">Evde</option>
+            <option value="salon">Salonda</option>
+            <option value="dis">Dış mekanda</option>
+          </select>
+        </div>
 
-      <label>Beslenme tercihi</label>
-      <select id="nutrition">
-        <option value="pratik">Pratik</option>
-        <option value="ekonomik">Ekonomik</option>
-        <option value="protein">Protein ağırlıklı</option>
-        <option value="hafif">Hafif/denge odaklı</option>
-      </select>
+        <div>
+          <label>Beslenme tercihi</label>
+          <select id="nutrition">
+            <option value="pratik">Pratik</option>
+            <option value="ekonomik">Ekonomik</option>
+            <option value="protein">Protein ağırlıklı</option>
+            <option value="hafif">Hafif/denge odaklı</option>
+          </select>
+        </div>
+
+        <div>
+          <label>Cinsiyet</label>
+          <select id="gender">
+            <option value="">Belirtmek istemiyorum</option>
+            <option value="male">Erkek</option>
+            <option value="female">Kadın</option>
+          </select>
+        </div>
+
+        <div>
+          <label>Yaş</label>
+          <input id="age" type="number" min="10" max="100" placeholder="Örn: 30" />
+        </div>
+
+        <div>
+          <label>Boy / cm</label>
+          <input id="height" type="number" min="100" max="230" placeholder="Örn: 175" />
+        </div>
+
+        <div>
+          <label>Kilo / kg</label>
+          <input id="weight" type="number" min="30" max="250" placeholder="Örn: 80" />
+        </div>
+
+        <div>
+          <label>Günlük Aktivite Seviyesi</label>
+          <select id="activity">
+            <option value="1.2">Hareketsiz / masa başı</option>
+            <option value="1.375">Hafif aktif</option>
+            <option value="1.55" selected>Orta aktif</option>
+            <option value="1.725">Çok aktif</option>
+          </select>
+        </div>
+
+        <div>
+          <label>Son antrenman geri bildirimi</label>
+          <select id="feedback">
+            <option value="normal">Normaldi</option>
+            <option value="easy">Kolaydı</option>
+            <option value="hard">Zordu</option>
+            <option value="failed">Yapamadım</option>
+            <option value="pain">Ağrı oldu</option>
+          </select>
+        </div>
+      </div>
 
       <button onclick="generatePlan()">Plan Oluştur</button>
+      <button class="secondary" onclick="nextWeek()">Sonraki Haftaya Geç</button>
+      <button class="warning" onclick="resetProgram()">Programı Baştan Başlat</button>
       <button class="secondary" onclick="generatePrompt()">AI Prompt Oluştur</button>
       <button class="danger" onclick="clearData()">Bu Cihazdaki Verileri Sil</button>
     </section>
@@ -206,108 +163,288 @@
       <h2>Planın</h2>
       <div id="summary"></div>
 
+      <h3>Kalori ve Makro Hesabı</h3>
+      <div id="caloriePlan"></div>
+
       <h3>Haftalık Spor Planı</h3>
       <div id="workoutPlan"></div>
 
-      <h3>Beslenme Önerileri</h3>
-      <div id="nutritionPlan"></div>
+      <h3>Haftalık Yemek Listesi</h3>
+      <div id="mealPlan"></div>
     </section>
 
     <section id="promptSection" class="card hidden">
       <h2>AI İçin Hazır Prompt</h2>
-      <p class="small">
-        Bu metni ChatLLM/ChatGPT gibi bir AI aracına yapıştırarak daha detaylı kişisel plan isteyebilirsin.
-      </p>
+      <p class="small">Bu metni ChatLLM/ChatGPT gibi bir AI aracına yapıştırarak daha detaylı plan isteyebilirsin.</p>
       <textarea id="aiPrompt" readonly></textarea>
       <button onclick="copyPrompt()">Promptu Kopyala</button>
     </section>
 
     <section class="card">
       <h2>Telefona Ekleme</h2>
-      <p class="small">
-        Android: Chrome’da siteyi aç → sağ üst üç nokta → Ana ekrana ekle / Uygulamayı yükle.
-      </p>
-      <p class="small">
-        iPhone: Safari’de siteyi aç → Paylaş butonu → Ana Ekrana Ekle.
-      </p>
+      <p class="small">Android: Chrome’da siteyi aç → sağ üst üç nokta → Ana ekrana ekle / Uygulamayı yükle.</p>
+      <p class="small">iPhone: Safari’de siteyi aç → Paylaş butonu → Ana Ekrana Ekle.</p>
     </section>
   </main>
 
   <script>
     const dayNames = ["Pazartesi", "Salı", "Çarşamba", "Perşembe", "Cuma", "Cumartesi", "Pazar"];
 
+    const exerciseLibrary = {
+      chair_squat: {
+        name: "Sandalyeye Otur-Kalk",
+        description: "Sandalyeye kontrollü şekilde oturur gibi alçal, sonra topuklardan güç alarak kalk.",
+        tips: ["Dizlerini içe düşürme.", "Sırtını dik tut.", "Ağrı olursa hareketi bırak."]
+      },
+      squat: {
+        name: "Squat",
+        description: "Ayaklar omuz genişliğinde açıkken kalçanı geriye göndererek çömel ve kontrollü kalk.",
+        tips: ["Topukları yerden kaldırma.", "Dizler ayak ucuyla aynı yöne baksın.", "Belini yuvarlama."]
+      },
+      tempo_squat: {
+        name: "Tempo Squat",
+        description: "Squat hareketini daha yavaş yap; inerken 3 saniye, kalkarken kontrollü hareket et.",
+        tips: ["Hızı değil kontrolü önemse.", "Diz ve bel ağrısında dur.", "Nefesini tutma."]
+      },
+      lunge: {
+        name: "Lunge",
+        description: "Bir ayağını öne al, kontrollü şekilde alçal ve başlangıç pozisyonuna dön.",
+        tips: ["Öndeki diz çok fazla öne kaçmasın.", "Denge için yavaş başla.", "Gerekirse duvardan destek al."]
+      },
+      wall_pushup: {
+        name: "Duvar Şınavı",
+        description: "Ellerini duvara koy, gövden düzken kontrollü şekilde duvara yaklaşıp geri it.",
+        tips: ["Vücudu düz tut.", "Omuzları kulaklara çekme.", "Kontrollü nefes al."]
+      },
+      incline_pushup: {
+        name: "Yükselti Destekli Şınav",
+        description: "Ellerini masa veya koltuk gibi sağlam bir yükseltiye koyarak şınav yap.",
+        tips: ["Yüzey sağlam olsun.", "Belini düşürme.", "Hareketi kontrollü yap."]
+      },
+      knee_pushup: {
+        name: "Diz Üstü Şınav",
+        description: "Dizler yerdeyken eller omuz genişliğinde açık şekilde kontrollü şınav yap.",
+        tips: ["Kalça ve gövde aynı hatta kalsın.", "Dirsekleri çok dışa açma.", "Ağrı varsa bırak."]
+      },
+      pushup: {
+        name: "Şınav",
+        description: "Eller omuz genişliğinde açık, gövde düz çizgideyken kontrollü inip kalk.",
+        tips: ["Belini düşürme.", "Karın kaslarını sık.", "Zor gelirse diz üstü varyasyona dön."]
+      },
+      glute_bridge: {
+        name: "Glute Bridge",
+        description: "Sırt üstü yat, dizler bükülü; kalçanı sıkıp yukarı kaldır ve kontrollü indir.",
+        tips: ["Belini aşırı çukurlaştırma.", "Kalçayı üstte sık.", "Boynunu kasma."]
+      },
+      dead_bug: {
+        name: "Dead Bug",
+        description: "Sırt üstü yat, karşı kol ve bacağı kontrollü uzatıp tekrar merkeze getir.",
+        tips: ["Belini yere yakın tut.", "Yavaş hareket et.", "Nefesini tutma."]
+      },
+      plank: {
+        name: "Plank",
+        description: "Dirsekler omuz hizasında, gövde düz çizgide olacak şekilde pozisyonu koru.",
+        tips: ["Belini aşağı düşürme.", "Kalçayı çok yukarı kaldırma.", "Nefes almaya devam et."]
+      },
+      mountain_climber: {
+        name: "Mountain Climber",
+        description: "Şınav pozisyonunda dizleri sırayla göğse doğru çekerek kontrollü tempo yap.",
+        tips: ["Belini sabit tut.", "Çok hızlı başlama.", "Bilek ağrısında dur."]
+      },
+      superman: {
+        name: "Superman",
+        description: "Yüzüstü yat, kolları ve bacakları hafifçe yerden kaldırıp indir.",
+        tips: ["Boynu zorlamadan bakış aşağıda olsun.", "Bel ağrısı olursa bırak.", "Kontrollü hareket et."]
+      },
+      backpack_row: {
+        name: "Sırt Çantası Row",
+        description: "İçine ağırlık koyduğun çantayı iki elle tutup gövde eğikken kendine doğru çek.",
+        tips: ["Sırtını yuvarlama.", "Dirsekleri geriye çek.", "Ağırlığı hafif başlat."]
+      },
+      walking: {
+        name: "Tempolu Yürüyüş",
+        description: "Konuşabilecek ama şarkı söyleyemeyecek tempoda yürüyüş yap.",
+        tips: ["Rahat ayakkabı kullan.", "Aşırı nefes nefese kalma.", "Su içmeyi unutma."]
+      },
+      gym_fullbody: {
+        name: "Salon Full Body",
+        description: "Leg press, chest press, lat pulldown, shoulder press ve core hareketlerinden oluşan dengeli salon çalışması.",
+        tips: ["Ağırlıkları kontrollü seç.", "Tekniği bozmadan yap.", "Makine ayarlarını vücuduna göre düzenle."]
+      }
+    };
+
     window.onload = function () {
-      const saved = localStorage.getItem("fitplan-mini");
+      const saved = localStorage.getItem("fitplan-mini-v2");
       if (saved) {
         const data = JSON.parse(saved);
-        document.getElementById("nickname").value = data.nickname || "";
-        document.getElementById("goal").value = data.goal || "kilo_verme";
-        document.getElementById("level").value = data.level || "baslangic";
-        document.getElementById("days").value = data.days || "3";
-        document.getElementById("place").value = data.place || "ev";
-        document.getElementById("nutrition").value = data.nutrition || "pratik";
+        setValue("nickname", data.nickname || "");
+        setValue("goal", data.goal || "kilo_verme");
+        setValue("level", data.level || "baslangic");
+        setValue("days", data.days || "3");
+        setValue("place", data.place || "ev");
+        setValue("nutrition", data.nutrition || "pratik");
+        setValue("gender", data.gender || "");
+        setValue("age", data.age || "");
+        setValue("height", data.height || "");
+        setValue("weight", data.weight || "");
+        setValue("activity", data.activity || "1.55");
+        setValue("feedback", data.feedback || "normal");
         renderPlan(data);
       }
     };
 
+    function setValue(id, value) { document.getElementById(id).value = value; }
+
     function labelOf(type, value) {
       const labels = {
-        goal: {
-          kilo_verme: "Kilo vermek",
-          kas_kazanma: "Kas kazanmak",
-          form_koruma: "Form korumak",
-          kondisyon: "Kondisyon artırmak"
-        },
-        level: {
-          baslangic: "Başlangıç",
-          orta: "Orta",
-          ileri: "İleri"
-        },
-        place: {
-          ev: "Evde",
-          salon: "Salonda",
-          dis: "Dış mekanda"
-        },
-        nutrition: {
-          pratik: "Pratik",
-          ekonomik: "Ekonomik",
-          protein: "Protein ağırlıklı",
-          hafif: "Hafif/denge odaklı"
-        }
+        goal: { kilo_verme: "Kilo vermek", kas_kazanma: "Kas kazanmak", form_koruma: "Form korumak", kondisyon: "Kondisyon artırmak" },
+        level: { baslangic: "Başlangıç", orta: "Orta", ileri: "İleri" },
+        place: { ev: "Evde", salon: "Salonda", dis: "Dış mekanda" },
+        nutrition: { pratik: "Pratik", ekonomik: "Ekonomik", protein: "Protein ağırlıklı", hafif: "Hafif/denge odaklı" },
+        gender: { "": "Belirtilmedi", male: "Erkek", female: "Kadın" },
+        activity: { "1.2": "Hareketsiz / masa başı", "1.375": "Hafif aktif", "1.55": "Orta aktif", "1.725": "Çok aktif" },
+        feedback: { easy: "Kolaydı", normal: "Normaldi", hard: "Zordu", failed: "Yapamadım", pain: "Ağrı oldu" }
       };
-
       return labels[type][value] || value;
     }
 
-    function generatePlan() {
-      const data = getFormData();
-      data.workout = buildWorkout(data);
-      data.meals = buildNutrition(data);
-      localStorage.setItem("fitplan-mini", JSON.stringify(data));
-      renderPlan(data);
-    }
-
     function getFormData() {
+      const saved = JSON.parse(localStorage.getItem("fitplan-mini-v2") || "{}");
       return {
         nickname: document.getElementById("nickname").value.trim() || "Misafir",
         goal: document.getElementById("goal").value,
         level: document.getElementById("level").value,
         days: document.getElementById("days").value,
         place: document.getElementById("place").value,
-        nutrition: document.getElementById("nutrition").value
+        nutrition: document.getElementById("nutrition").value,
+        gender: document.getElementById("gender").value,
+        age: Number(document.getElementById("age").value),
+        height: Number(document.getElementById("height").value),
+        weight: Number(document.getElementById("weight").value),
+        activity: document.getElementById("activity").value,
+        feedback: document.getElementById("feedback").value,
+        week: saved.week || 1
       };
+    }
+
+    function generatePlan() {
+      const data = getFormData();
+      data.workout = buildWorkout(data);
+      data.meals = buildWeeklyMealPlan(data);
+      localStorage.setItem("fitplan-mini-v2", JSON.stringify(data));
+      renderPlan(data);
+    }
+
+    function nextWeek() {
+      const data = getFormData();
+      data.week = (data.week || 1) + 1;
+      data.workout = buildWorkout(data);
+      data.meals = buildWeeklyMealPlan(data);
+      localStorage.setItem("fitplan-mini-v2", JSON.stringify(data));
+      renderPlan(data);
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function resetProgram() {
+      const data = getFormData();
+      data.week = 1;
+      data.feedback = "normal";
+      setValue("feedback", "normal");
+      data.workout = buildWorkout(data);
+      data.meals = buildWeeklyMealPlan(data);
+      localStorage.setItem("fitplan-mini-v2", JSON.stringify(data));
+      renderPlan(data);
+    }
+
+    function getCycleWeek(week) { return ((week - 1) % 4) + 1; }
+
+    function hasBodyData(data) { return data.gender && data.age > 0 && data.height > 0 && data.weight > 0; }
+
+    function calculateBMR(data) {
+      if (!hasBodyData(data)) return null;
+      const genderValue = data.gender === "male" ? 5 : -161;
+      return Math.round(10 * data.weight + 6.25 * data.height - 5 * data.age + genderValue);
+    }
+
+    function calculateTDEE(data) {
+      const bmr = calculateBMR(data);
+      if (!bmr) return null;
+      return Math.round(bmr * Number(data.activity));
+    }
+
+    function calculateTargetCalories(data) {
+      const tdee = calculateTDEE(data);
+      if (!tdee) return null;
+      let target = tdee;
+      if (data.goal === "kilo_verme") target = tdee - 400;
+      if (data.goal === "kas_kazanma") target = tdee + 250;
+      if (data.goal === "kondisyon") target = tdee + 100;
+      return Math.max(1200, Math.round(target));
+    }
+
+    function getMacroRatios(goal) {
+      if (goal === "kilo_verme") return { protein: 30, carbs: 40, fat: 30 };
+      if (goal === "kas_kazanma") return { protein: 30, carbs: 45, fat: 25 };
+      if (goal === "kondisyon") return { protein: 25, carbs: 50, fat: 25 };
+      return { protein: 25, carbs: 45, fat: 30 };
+    }
+
+    function calculateMacros(data) {
+      const calories = calculateTargetCalories(data);
+      if (!calories) return null;
+      const ratios = getMacroRatios(data.goal);
+      return {
+        proteinPercent: ratios.protein,
+        carbsPercent: ratios.carbs,
+        fatPercent: ratios.fat,
+        proteinGram: Math.round((calories * ratios.protein / 100) / 4),
+        carbsGram: Math.round((calories * ratios.carbs / 100) / 4),
+        fatGram: Math.round((calories * ratios.fat / 100) / 9)
+      };
+    }
+
+    function feedbackAdjustment(data) {
+      if (data.feedback === "easy") return 1;
+      if (data.feedback === "hard" || data.feedback === "failed" || data.feedback === "pain") return -1;
+      return 0;
+    }
+
+    function chooseExercise(type, data) {
+      const cycle = getCycleWeek(data.week || 1);
+      let base = data.level === "baslangic" ? 0 : data.level === "orta" ? 1 : 2;
+      base += cycle === 3 ? 1 : 0;
+      base += feedbackAdjustment(data);
+      base = Math.max(0, Math.min(3, base));
+
+      const home = {
+        legs: ["chair_squat", "squat", "tempo_squat", "lunge"],
+        push: ["wall_pushup", "incline_pushup", "knee_pushup", "pushup"],
+        core: ["dead_bug", "plank", "plank", "mountain_climber"],
+        back: ["superman", "superman", "backpack_row", "backpack_row"]
+      };
+
+      if (data.place === "salon") {
+        if (type === "gym") return "gym_fullbody";
+        return home[type][base];
+      }
+
+      if (type === "cardio") return "walking";
+      return home[type][base];
+    }
+
+    function prescription(data) {
+      const cycle = getCycleWeek(data.week || 1);
+      if (cycle === 1) return { sets: 3, reps: "8-10", cardio: "15-20 dk", note: "Alışma ve teknik haftası" };
+      if (cycle === 2) return { sets: 3, reps: "10-12", cardio: "20-25 dk", note: "Hafif artış haftası" };
+      if (cycle === 3) return { sets: 4, reps: "8-12", cardio: "25-30 dk", note: "Varyasyon ve yoğunluk haftası" };
+      return { sets: 2, reps: "8-10", cardio: "15-20 dk", note: "Toparlanma ve değerlendirme haftası" };
     }
 
     function buildWorkout(data) {
       const dayCount = Number(data.days);
-      const selectedDaysMap = {
-        2: [0, 3],
-        3: [0, 2, 4],
-        4: [0, 1, 3, 5],
-        5: [0, 1, 2, 4, 5]
-      };
-
+      const selectedDaysMap = { 2: [0, 3], 3: [0, 2, 4], 4: [0, 1, 3, 5], 5: [0, 1, 2, 4, 5] };
       const selectedDays = selectedDaysMap[dayCount];
+      const p = prescription(data);
       const plan = [];
 
       for (let i = 0; i < 7; i++) {
@@ -315,163 +452,214 @@
           plan.push({
             day: dayNames[i],
             title: "Dinlenme / Hafif hareket",
-            items: ["20-30 dk hafif yürüyüş", "5-10 dk esneme", "Bol su iç"]
+            items: ["20-30 dk hafif yürüyüş veya esneme", "Bol su iç", "Uyku ve toparlanmaya dikkat et"],
+            exercises: []
           });
           continue;
         }
 
+        const isGym = data.place === "salon";
+        const exerciseIds = isGym ? ["gym_fullbody", "plank", "walking"] : [chooseExercise("legs", data), chooseExercise("push", data), "glute_bridge", chooseExercise("back", data), chooseExercise("core", data), "walking"];
+        const items = exerciseIds.map(id => {
+          if (id === "walking") return exerciseLibrary[id].name + ": " + p.cardio;
+          if (id === "plank") return exerciseLibrary[id].name + ": " + p.sets + " set x 20-45 saniye";
+          return exerciseLibrary[id].name + ": " + p.sets + " set x " + p.reps + " tekrar";
+        });
+        items.push(p.note);
+        if (data.feedback === "pain") items.push("Önceki geri bildirimde ağrı işaretlendi: Ağrı yapan hareketi bırak ve gerekiyorsa uzmana danış.");
+
         plan.push({
           day: dayNames[i],
-          title: workoutTitle(data, selectedDays.indexOf(i)),
-          items: workoutItems(data, selectedDays.indexOf(i))
+          title: workoutTitle(data),
+          items,
+          exercises: exerciseIds
         });
       }
-
       return plan;
     }
 
-    function workoutTitle(data, index) {
+    function workoutTitle(data) {
+      const cycle = getCycleWeek(data.week || 1);
+      if (cycle === 4) return "Toparlanma Odaklı Antrenman";
       if (data.goal === "kondisyon") return "Kondisyon Odaklı Antrenman";
-      if (data.goal === "kas_kazanma") return data.place === "salon" ? "Ağırlık Antrenmanı" : "Kuvvet Antrenmanı";
+      if (data.goal === "kas_kazanma") return data.place === "salon" ? "Ağırlık / Kuvvet Antrenmanı" : "Kuvvet Antrenmanı";
       if (data.goal === "kilo_verme") return "Yağ Yakım + Kuvvet";
       return "Dengeli Full Body";
     }
 
-    function workoutItems(data, index) {
-      const beginnerHome = [
-        "Squat: 3 set x 10 tekrar",
-        "Diz üstü şınav veya duvar şınavı: 3 set x 8 tekrar",
-        "Glute bridge: 3 set x 12 tekrar",
-        "Plank: 3 set x 20 saniye",
-        "10-20 dk tempolu yürüyüş"
-      ];
+    const mealRotations = [
+      {
+        breakfast: ["Yoğurt + yulaf + meyve", "2 yumurta + tam buğday ekmeği + yeşillik", "Peynirli omlet + domates/salatalık"],
+        snack1: ["Meyve", "Kefir", "Yoğurt"],
+        lunch: ["Tavuklu salata", "Mercimek çorbası + salata", "Nohut + bulgur + ayran"],
+        snack2: ["Bir avuç kuruyemiş", "Meyve + yoğurt", "Kefir"],
+        dinner: ["Sebze yemeği + yoğurt", "Izgara tavuk + salata", "Balık + salata"]
+      },
+      {
+        breakfast: ["Kefir + muz + yulaf", "Haşlanmış yumurta + peynir + yeşillik", "Menemen + tam buğday ekmeği"],
+        snack1: ["Elma", "Ayran", "Yoğurt"],
+        lunch: ["Hindi/tavuk sandviç + salata", "Kuru fasulye + bulgur + cacık", "Ton balıklı salata"],
+        snack2: ["Ceviz/badem", "Meyve", "Süt/kefir"],
+        dinner: ["Köfte + sebze", "Mercimek yemeği + yoğurt", "Tavuk sote + salata"]
+      },
+      {
+        breakfast: ["Yulaf lapası + tarçın + meyve", "Omlet + yeşillik", "Peynir + yumurta + domates"],
+        snack1: ["Muz", "Yoğurt", "Kefir"],
+        lunch: ["Tavuk + bulgur + salata", "Yeşil mercimek salatası", "Izgara köfte + salata"],
+        snack2: ["Kuruyemiş", "Ayran", "Meyve"],
+        dinner: ["Sebze + protein kaynağı", "Balık + sebze", "Çorba + yoğurt + salata"]
+      },
+      {
+        breakfast: ["Serbest dengeli kahvaltı", "Yoğurt + meyve + kuruyemiş", "Yumurta + yeşillik"],
+        snack1: ["Meyve", "Kefir", "Ayran"],
+        lunch: ["Ev yemeği + salata", "Baklagil + yoğurt", "Tavuklu salata"],
+        snack2: ["Yoğurt", "Kuruyemiş", "Meyve"],
+        dinner: ["Hafif protein + sebze", "Çorba + salata", "Izgara tavuk/balık + salata"]
+      }
+    ];
 
-      const gymStrength = [
-        "Leg press veya squat: 4 set x 8-10 tekrar",
-        "Chest press veya bench press: 4 set x 8-10 tekrar",
-        "Lat pulldown: 4 set x 10 tekrar",
-        "Shoulder press: 3 set x 10 tekrar",
-        "Plank: 3 set x 30-45 saniye"
-      ];
-
-      const cardio = [
-        "5 dk ısınma yürüyüşü",
-        "20 dk tempolu yürüyüş / bisiklet / koşu",
-        "Bodyweight squat: 3 set x 12 tekrar",
-        "Mountain climber: 3 set x 20 saniye",
-        "Esneme: 8 dk"
-      ];
-
-      const balanced = [
-        "Squat veya leg press: 3 set x 10 tekrar",
-        "Şınav veya chest press: 3 set x 10 tekrar",
-        "Row hareketi: 3 set x 10 tekrar",
-        "Lunge: 3 set x 8 tekrar",
-        "Core: 3 set"
-      ];
-
-      if (data.goal === "kondisyon") return cardio;
-      if (data.place === "salon" && data.level !== "baslangic") return gymStrength;
-      if (data.level === "baslangic" && data.place === "ev") return beginnerHome;
-      return balanced;
+    function buildWeeklyMealPlan(data) {
+      const rotation = mealRotations[getCycleWeek(data.week || 1) - 1];
+      const meals = [];
+      for (let i = 0; i < 7; i++) {
+        meals.push({
+          day: dayNames[i],
+          breakfast: adjustMeal(rotation.breakfast[i % rotation.breakfast.length], data),
+          snack1: rotation.snack1[i % rotation.snack1.length],
+          lunch: adjustMeal(rotation.lunch[i % rotation.lunch.length], data),
+          snack2: rotation.snack2[i % rotation.snack2.length],
+          dinner: adjustMeal(rotation.dinner[i % rotation.dinner.length], data)
+        });
+      }
+      return meals;
     }
 
-    function buildNutrition(data) {
-      const base = [];
-
-      if (data.goal === "kilo_verme") {
-        base.push("Tabaklarının yarısını sebze/salata ile doldur.");
-        base.push("Protein kaynağını her ana öğüne ekle: yumurta, yoğurt, tavuk, balık, baklagil.");
-        base.push("Şekerli içecekleri azalt, suyu artır.");
-      }
-
-      if (data.goal === "kas_kazanma") {
-        base.push("Her ana öğünde protein almaya çalış.");
-        base.push("Antrenman sonrası protein + karbonhidrat içeren bir öğün tercih et.");
-        base.push("Öğün atlamamaya çalış.");
-      }
-
-      if (data.goal === "form_koruma") {
-        base.push("Dengeli tabak modeli uygula: protein + sebze + kontrollü karbonhidrat.");
-        base.push("Haftada birkaç gün yürüyüş ekle.");
-        base.push("Porsiyonları çok büyütmeden düzenli beslen.");
-      }
-
-      if (data.goal === "kondisyon") {
-        base.push("Antrenman öncesi hafif karbonhidrat alabilirsin.");
-        base.push("Terleme artacağı için su tüketimine dikkat et.");
-        base.push("Toparlanma için proteinli öğün ekle.");
-      }
-
-      if (data.nutrition === "ekonomik") {
-        base.push("Ekonomik seçenekler: yumurta, yoğurt, mercimek, nohut, bulgur, tavuk, mevsim sebzeleri.");
-      }
-
-      if (data.nutrition === "pratik") {
-        base.push("Pratik seçenekler: yoğurt+yulaf, omlet, ton balıklı salata, tavuklu sandviç, mercimek çorbası.");
-      }
-
-      if (data.nutrition === "protein") {
-        base.push("Protein seçenekleri: yumurta, tavuk, hindi, balık, yoğurt, kefir, peynir, baklagiller.");
-      }
-
-      if (data.nutrition === "hafif") {
-        base.push("Hafif seçenekler: sebze yemekleri, yoğurt, çorba, salata, ızgara protein kaynakları.");
-      }
-
-      base.push("Bu öneriler genel bilgilendirme amaçlıdır; özel sağlık durumlarında uzmana danış.");
-
-      return base;
+    function adjustMeal(meal, data) {
+      if (data.goal === "kilo_verme") return meal + " - porsiyon kontrollü";
+      if (data.goal === "kas_kazanma") return meal + " - protein porsiyonunu güçlendir";
+      if (data.goal === "kondisyon") return meal + " - antrenman günlerinde karbonhidratı çok kısmadan tüket";
+      return meal + " - dengeli porsiyon";
     }
 
     function renderPlan(data) {
       document.getElementById("resultSection").classList.remove("hidden");
-
+      const cycle = getCycleWeek(data.week || 1);
       document.getElementById("summary").innerHTML = `
         <span class="tag">Rumuz: ${escapeHtml(data.nickname)}</span>
+        <span class="tag">Hafta: ${data.week || 1}</span>
+        <span class="tag">Döngü: ${cycle}/4</span>
         <span class="tag">Hedef: ${labelOf("goal", data.goal)}</span>
         <span class="tag">Seviye: ${labelOf("level", data.level)}</span>
         <span class="tag">Gün: ${data.days}</span>
         <span class="tag">Yer: ${labelOf("place", data.place)}</span>
+        <span class="tag">Beslenme: ${labelOf("nutrition", data.nutrition)}</span>
+        <span class="tag">Geri bildirim: ${labelOf("feedback", data.feedback || "normal")}</span>
       `;
-
+      renderCaloriePlan(data);
       const workout = data.workout || buildWorkout(data);
-      const meals = data.meals || buildNutrition(data);
+      const meals = data.meals || buildWeeklyMealPlan(data);
 
       document.getElementById("workoutPlan").innerHTML = workout.map(day => `
         <div class="plan-day">
           <h3>${day.day}: ${day.title}</h3>
-          <ul>${day.items.map(item => `<li>${item}</li>`).join("")}</ul>
+          <ul>${day.items.map(item => `<li>${escapeHtml(item)}</li>`).join("")}</ul>
+          ${renderExerciseDetails(day.exercises)}
         </div>
       `).join("");
 
-      document.getElementById("nutritionPlan").innerHTML = `
-        <ul>${meals.map(item => `<li>${item}</li>`).join("")}</ul>
+      document.getElementById("mealPlan").innerHTML = meals.map(day => `
+        <div class="meal-day">
+          <h3>${day.day}</h3>
+          <ul>
+            <li><strong>Kahvaltı:</strong> ${escapeHtml(day.breakfast)}</li>
+            <li><strong>Ara öğün:</strong> ${escapeHtml(day.snack1)}</li>
+            <li><strong>Öğle:</strong> ${escapeHtml(day.lunch)}</li>
+            <li><strong>Ara öğün:</strong> ${escapeHtml(day.snack2)}</li>
+            <li><strong>Akşam:</strong> ${escapeHtml(day.dinner)}</li>
+          </ul>
+        </div>
+      `).join("") + `<p class="small">Yemek listesi genel öneridir. Özel sağlık durumu, alerji, ilaç kullanımı veya tıbbi diyet ihtiyacında uzmana danışılmalıdır.</p>`;
+    }
+
+    function renderExerciseDetails(ids) {
+      if (!ids || ids.length === 0) return "";
+      const unique = [...new Set(ids)];
+      return `
+        <details>
+          <summary>Hareket açıklamalarını göster</summary>
+          ${unique.map(id => {
+            const ex = exerciseLibrary[id];
+            if (!ex) return "";
+            return `<div class="info" style="margin-top:8px;"><strong>${ex.name}</strong><br>${ex.description}<ul>${ex.tips.map(t => `<li>${t}</li>`).join("")}</ul></div>`;
+          }).join("")}
+        </details>
+      `;
+    }
+
+    function renderCaloriePlan(data) {
+      const calorieDiv = document.getElementById("caloriePlan");
+      if (!hasBodyData(data)) {
+        calorieDiv.innerHTML = `<div class="notice">Kalori hesabı yapılmadı. BMR/TDEE hesabı için cinsiyet, yaş, boy ve kilo bilgilerini girmen gerekir. Bu bilgiler sadece bu cihazda saklanır.</div>`;
+        return;
+      }
+      const bmr = calculateBMR(data);
+      const tdee = calculateTDEE(data);
+      const targetCalories = calculateTargetCalories(data);
+      const macros = calculateMacros(data);
+      calorieDiv.innerHTML = `
+        <div class="plan-day">
+          <h3>Günlük Enerji Hesabı</h3>
+          <ul>
+            <li>Bazal metabolizma / BMR: <strong>${bmr} kcal</strong></li>
+            <li>Günlük toplam ihtiyaç / TDEE: <strong>${tdee} kcal</strong></li>
+            <li>Hedefe göre günlük kalori: <strong>${targetCalories} kcal</strong></li>
+            <li>Aktivite seviyesi: <strong>${labelOf("activity", data.activity)}</strong></li>
+          </ul>
+        </div>
+        <div class="plan-day">
+          <h3>Makro Önerisi</h3>
+          <ul>
+            <li>Protein: <strong>%${macros.proteinPercent}</strong> yaklaşık <strong>${macros.proteinGram} g</strong></li>
+            <li>Karbonhidrat: <strong>%${macros.carbsPercent}</strong> yaklaşık <strong>${macros.carbsGram} g</strong></li>
+            <li>Yağ: <strong>%${macros.fatPercent}</strong> yaklaşık <strong>${macros.fatGram} g</strong></li>
+          </ul>
+          <p class="small">Bu değerler genel bilgilendirme amaçlıdır. Tıbbi diyet, hastalık yönetimi veya özel sağlık durumu için kullanılmamalıdır.</p>
+        </div>
       `;
     }
 
     function generatePrompt() {
       const data = getFormData();
-
-      const prompt = `Benim için genel bilgilendirme amaçlı 1 haftalık spor ve beslenme planı hazırla.
+      const bmr = calculateBMR(data) || "Hesaplanmadı";
+      const tdee = calculateTDEE(data) || "Hesaplanmadı";
+      const target = calculateTargetCalories(data) || "Hesaplanmadı";
+      const prompt = `Benim için genel bilgilendirme amaçlı 1 haftalık spor ve beslenme planı hazırla. Tıbbi tavsiye verme.
 
 Rumuz: ${data.nickname}
+Hafta: ${data.week}
 Hedef: ${labelOf("goal", data.goal)}
 Seviye: ${labelOf("level", data.level)}
 Haftalık spor günü: ${data.days}
 Spor yeri: ${labelOf("place", data.place)}
 Beslenme tercihi: ${labelOf("nutrition", data.nutrition)}
+Cinsiyet: ${labelOf("gender", data.gender || "")}
+Yaş: ${data.age || "Belirtilmedi"}
+Boy: ${data.height ? data.height + " cm" : "Belirtilmedi"}
+Kilo: ${data.weight ? data.weight + " kg" : "Belirtilmedi"}
+Aktivite seviyesi: ${labelOf("activity", data.activity)}
+Son geri bildirim: ${labelOf("feedback", data.feedback)}
+Bazal metabolizma / BMR: ${bmr}
+Günlük toplam ihtiyaç / TDEE: ${tdee}
+Hedef kalori: ${target}
 
 İstekler:
 - Gün gün spor programı ver.
 - Her egzersiz için set, tekrar veya süre yaz.
-- Yeni başlayanlar için güvenli ve basit hareketler seç.
-- Beslenme tarafında pratik ve uygulanabilir günlük öneriler ver.
-- Tıbbi tavsiye verme.
-- Kronik hastalık, sakatlık veya özel sağlık durumu varsa uzmana danışılması gerektiğini belirt.
+- Egzersizlerin nasıl yapılacağını kısa açıklamalarla belirt.
+- Haftalık yemek listesi ver: kahvaltı, ara öğün, öğle, ara öğün, akşam.
+- Programı hedefe göre düzenle.
 - Programı çok ağır yapma.
-- Alternatif egzersiz ve alternatif öğünler de ekle.`;
-
+- Ağrı, sakatlık, kronik hastalık, hamilelik veya özel sağlık durumu varsa uzmana danışılması gerektiğini belirt.`;
       document.getElementById("promptSection").classList.remove("hidden");
       document.getElementById("aiPrompt").value = prompt;
     }
@@ -484,46 +672,17 @@ Beslenme tercihi: ${labelOf("nutrition", data.nutrition)}
     }
 
     function clearData() {
-      if (confirm("Bu cihazdaki tüm FitPlan Mini verileri silinsin mi?")) {
-        localStorage.removeItem("fitplan-mini");
+      if (confirm("Bu cihazdaki tüm FitPlan Mini v2 verileri silinsin mi?")) {
+        localStorage.removeItem("fitplan-mini-v2");
         location.reload();
       }
     }
 
     function escapeHtml(text) {
-      return text.replace(/[&<>"']/g, function (match) {
-        return {
-          "&": "&amp;",
-          "<​": "&lt;",
-          ">": "&gt;",
-          '"': "&quot;",
-          "'": "&#039;"
-        }[match];
+      return String(text).replace(/[&<>"']/g, function (match) {
+        return { "&": "&", "<": "<", ">": ">", '"': """, "'": "'" }[match];
       });
     }
   </script>
 </body>
 </html>
-<label>Cinsiyet</label>
-<select id="gender">
-  <option value="">Belirtmek istemiyorum</option>
-  <option value="male">Erkek</option>
-  <option value="female">Kadın</option>
-</select>
-
-<label>Yaş</label>
-<input id="age" type="number" min="10" max="100" placeholder="Örn: 30" />
-
-<label>Boy / cm</label>
-<input id="height" type="number" min="100" max="230" placeholder="Örn: 175" />
-
-<label>Kilo / kg</label>
-<input id="weight" type="number" min="30" max="250" placeholder="Örn: 80" />
-
-<label>Günlük Aktivite Seviyesi</label>
-<select id="activity">
-  <option value="1.2">Hareketsiz / masa başı</option>
-  <option value="1.375">Hafif aktif</option>
-  <option value="1.55" selected>Orta aktif</option>
-  <option value="1.725">Çok aktif</option>
-</select>
