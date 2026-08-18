@@ -504,3 +504,26 @@ Beslenme tercihi: ${labelOf("nutrition", data.nutrition)}
   </script>
 </body>
 </html>
+<label>Cinsiyet</label>
+<select id="gender">
+  <option value="">Belirtmek istemiyorum</option>
+  <option value="male">Erkek</option>
+  <option value="female">Kadın</option>
+</select>
+
+<label>Yaş</label>
+<input id="age" type="number" min="10" max="100" placeholder="Örn: 30" />
+
+<label>Boy / cm</label>
+<input id="height" type="number" min="100" max="230" placeholder="Örn: 175" />
+
+<label>Kilo / kg</label>
+<input id="weight" type="number" min="30" max="250" placeholder="Örn: 80" />
+
+<label>Günlük Aktivite Seviyesi</label>
+<select id="activity">
+  <option value="1.2">Hareketsiz / masa başı</option>
+  <option value="1.375">Hafif aktif</option>
+  <option value="1.55" selected>Orta aktif</option>
+  <option value="1.725">Çok aktif</option>
+</select>
