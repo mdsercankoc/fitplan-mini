@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FitPlan Mini</title>
+  <meta name="theme-color" content="#16a34a" />
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      margin: 0;
+      background: #f4f7f5;
+      color: #172017;
+    }
+
+    header {
+      background: linear-gradient(135deg, #16a34a, #0f766e);
+      color: white;
+      padding: 24px 18px;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 28px;
+    }
+
+    header p {
+      margin: 8px 0 0;
+      opacity: 0.95;
+    }
+
+    main {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 18px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 16px;
+      padding: 18px;
+      margin-bottom: 16px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+    }
+
+    label {
+      display: block;
+      margin-top: 12px;
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      margin-top: 6px;
+      padding: 12px;
+      border: 1px solid #d1d5db;
+      border-radius: 10px;
+      font-size: 15px;
+      background: white;
+    }
+
+    button {
+      width: 100%;
+      padding: 13px;
+      margin-top: 14px;
+      border: none;
+      border-radius: 12px;
+      background: #16a34a;
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button.secondary {
+      background: #0f766e;
+    }
+
+    button.danger {
+      background: #dc2626;
+    }
+
+    .notice {
+      background: #fff7ed;
+      color: #7c2d12;
+      border: 1px solid #fed7aa;
+      padding: 12px;
+      border-radius: 12px;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .plan-day {
+      border-left: 5px solid #16a34a;
+      padding: 12px;
+      background: #f0fdf4;
+      border-radius: 10px;
+      margin-bottom: 10px;
+    }
+
+    .plan-day h3 {
+      margin: 0 0 8px;
+    }
+
+    ul {
+      margin-top: 6px;
+      padding-left: 20px;
+    }
+
+    .small {
+      font-size: 13px;
+      color: #4b5563;
+      line-height: 1.5;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .tag {
+      display: inline-block;
+      background: #dcfce7;
+      color: #166534;
+      padding: 5px 9px;
+      border-radius: 999px;
+      font-size: 12px;
+      margin: 4px 4px 4px 0;
+    }
+
+    textarea {
+      min-height: 160px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>FitPlan Mini</h1>
+    <p>Rumuzla çalışan basit spor ve beslenme planlayıcı</p>
+  </header>
+
+  <main>
+    <section class="card">
+      <div class="notice">
+        Bu uygulama tıbbi tavsiye vermez. Genel spor ve beslenme önerileri sunar.
+        Kronik hastalık, sakatlık, hamilelik, özel diyet veya sağlık sorunun varsa bir uzmana danış.
+        Veriler sadece bu cihazda saklanır.
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Profil</h2>
+
+      <label>Rumuz</label>
+      <input id="nickname" placeholder="Örn: Kartal, Mavi, Rocky" />
+
+      <label>Hedef</label>
+      <select id="goal">
+        <option value="kilo_verme">Kilo vermek</option>
+        <option value="kas_kazanma">Kas kazanmak</option>
+        <option value="form_koruma">Form korumak</option>
+        <option value="kondisyon">Kondisyon artırmak</option>
+      </select>
+
+      <label>Seviye</label>
+      <select id="level">
+        <option value="baslangic">Başlangıç</option>
+        <option value="orta">Orta</option>
+        <option value="ileri">İleri</option>
+      </select>
+
+      <label>Haftada kaç gün spor?</label>
+      <select id="days">
+        <option value="2">2 gün</option>
+        <option value="3" selected>3 gün</option>
+        <option value="4">4 gün</option>
+        <option value="5">5 gün</option>
+      </select>
+
+      <label>Spor yeri</label>
+      <select id="place">
+        <option value="ev">Evde</option>
+        <option value="salon">Salonda</option>
+        <option value="dis">Dış mekanda</option>
+      </select>
+
+      <label>Beslenme tercihi</label>
+      <select id="nutrition">
+        <option value="pratik">Pratik</option>
+        <option value="ekonomik">Ekonomik</option>
+        <option value="protein">Protein ağırlıklı</option>
+        <option value="hafif">Hafif/denge odaklı</option>
+      </select>
+
+      <button onclick="generatePlan()">Plan Oluştur</button>
+      <button class="secondary" onclick="generatePrompt()">AI Prompt Oluştur</button>
+      <button class="danger" onclick="clearData()">Bu Cihazdaki Verileri Sil</button>
+    </section>
+
+    <section id="resultSection" class="card hidden">
+      <h2>Planın</h2>
+      <div id="summary"></div>
+
+      <h3>Haftalık Spor Planı</h3>
+      <div id="workoutPlan"></div>
+
+      <h3>Beslenme Önerileri</h3>
+      <div id="nutritionPlan"></div>
+    </section>
+
+    <section id="promptSection" class="card hidden">
+      <h2>AI İçin Hazır Prompt</h2>
+      <p class="small">
+        Bu metni ChatLLM/ChatGPT gibi bir AI aracına yapıştırarak daha detaylı kişisel plan isteyebilirsin.
+      </p>
+      <textarea id="aiPrompt" readonly></textarea>
+      <button onclick="copyPrompt()">Promptu Kopyala</button>
+    </section>
+
+    <section class="card">
+      <h2>Telefona Ekleme</h2>
+      <p class="small">
+        Android: Chrome’da siteyi aç → sağ üst üç nokta → Ana ekrana ekle / Uygulamayı yükle.
+      </p>
+      <p class="small">
+        iPhone: Safari’de siteyi aç → Paylaş butonu → Ana Ekrana Ekle.
+      </p>
+    </section>
+  </main>
+
+  <script>
+    const dayNames = ["Pazartesi", "Salı", "Çarşamba", "Perşembe", "Cuma", "Cumartesi", "Pazar"];
+
+    window.onload = function () {
+      const saved = localStorage.getItem("fitplan-mini");
+      if (saved) {
+        const data = JSON.parse(saved);
+        document.getElementById("nickname").value = data.nickname || "";
+        document.getElementById("goal").value = data.goal || "kilo_verme";
+        document.getElementById("level").value = data.level || "baslangic";
+        document.getElementById("days").value = data.days || "3";
+        document.getElementById("place").value = data.place || "ev";
+        document.getElementById("nutrition").value = data.nutrition || "pratik";
+        renderPlan(data);
+      }
+    };
+
+    function labelOf(type, value) {
+      const labels = {
+        goal: {
+          kilo_verme: "Kilo vermek",
+          kas_kazanma: "Kas kazanmak",
+          form_koruma: "Form korumak",
+          kondisyon: "Kondisyon artırmak"
+        },
+        level: {
+          baslangic: "Başlangıç",
+          orta: "Orta",
+          ileri: "İleri"
+        },
+        place: {
+          ev: "Evde",
+          salon: "Salonda",
+          dis: "Dış mekanda"
+        },
+        nutrition: {
+          pratik: "Pratik",
+          ekonomik: "Ekonomik",
+          protein: "Protein ağırlıklı",
+          hafif: "Hafif/denge odaklı"
+        }
+      };
+
+      return labels[type][value] || value;
+    }
+
+    function generatePlan() {
+      const data = getFormData();
+      data.workout = buildWorkout(data);
+      data.meals = buildNutrition(data);
+      localStorage.setItem("fitplan-mini", JSON.stringify(data));
+      renderPlan(data);
+    }
+
+    function getFormData() {
+      return {
+        nickname: document.getElementById("nickname").value.trim() || "Misafir",
+        goal: document.getElementById("goal").value,
+        level: document.getElementById("level").value,
+        days: document.getElementById("days").value,
+        place: document.getElementById("place").value,
+        nutrition: document.getElementById("nutrition").value
+      };
+    }
+
+    function buildWorkout(data) {
+      const dayCount = Number(data.days);
+      const selectedDaysMap = {
+        2: [0, 3],
+        3: [0, 2, 4],
+        4: [0, 1, 3, 5],
+        5: [0, 1, 2, 4, 5]
+      };
+
+      const selectedDays = selectedDaysMap[dayCount];
+      const plan = [];
+
+      for (let i = 0; i < 7; i++) {
+        if (!selectedDays.includes(i)) {
+          plan.push({
+            day: dayNames[i],
+            title: "Dinlenme / Hafif hareket",
+            items: ["20-30 dk hafif yürüyüş", "5-10 dk esneme", "Bol su iç"]
+          });
+          continue;
+        }
+
+        plan.push({
+          day: dayNames[i],
+          title: workoutTitle(data, selectedDays.indexOf(i)),
+          items: workoutItems(data, selectedDays.indexOf(i))
+        });
+      }
+
+      return plan;
+    }
+
+    function workoutTitle(data, index) {
+      if (data.goal === "kondisyon") return "Kondisyon Odaklı Antrenman";
+      if (data.goal === "kas_kazanma") return data.place === "salon" ? "Ağırlık Antrenmanı" : "Kuvvet Antrenmanı";
+      if (data.goal === "kilo_verme") return "Yağ Yakım + Kuvvet";
+      return "Dengeli Full Body";
+    }
+
+    function workoutItems(data, index) {
+      const beginnerHome = [
+        "Squat: 3 set x 10 tekrar",
+        "Diz üstü şınav veya duvar şınavı: 3 set x 8 tekrar",
+        "Glute bridge: 3 set x 12 tekrar",
+        "Plank: 3 set x 20 saniye",
+        "10-20 dk tempolu yürüyüş"
+      ];
+
+      const gymStrength = [
+        "Leg press veya squat: 4 set x 8-10 tekrar",
+        "Chest press veya bench press: 4 set x 8-10 tekrar",
+        "Lat pulldown: 4 set x 10 tekrar",
+        "Shoulder press: 3 set x 10 tekrar",
+        "Plank: 3 set x 30-45 saniye"
+      ];
+
+      const cardio = [
+        "5 dk ısınma yürüyüşü",
+        "20 dk tempolu yürüyüş / bisiklet / koşu",
+        "Bodyweight squat: 3 set x 12 tekrar",
+        "Mountain climber: 3 set x 20 saniye",
+        "Esneme: 8 dk"
+      ];
+
+      const balanced = [
+        "Squat veya leg press: 3 set x 10 tekrar",
+        "Şınav veya chest press: 3 set x 10 tekrar",
+        "Row hareketi: 3 set x 10 tekrar",
+        "Lunge: 3 set x 8 tekrar",
+        "Core: 3 set"
+      ];
+
+      if (data.goal === "kondisyon") return cardio;
+      if (data.place === "salon" && data.level !== "baslangic") return gymStrength;
+      if (data.level === "baslangic" && data.place === "ev") return beginnerHome;
+      return balanced;
+    }
+
+    function buildNutrition(data) {
+      const base = [];
+
+      if (data.goal === "kilo_verme") {
+        base.push("Tabaklarının yarısını sebze/salata ile doldur.");
+        base.push("Protein kaynağını her ana öğüne ekle: yumurta, yoğurt, tavuk, balık, baklagil.");
+        base.push("Şekerli içecekleri azalt, suyu artır.");
+      }
+
+      if (data.goal === "kas_kazanma") {
+        base.push("Her ana öğünde protein almaya çalış.");
+        base.push("Antrenman sonrası protein + karbonhidrat içeren bir öğün tercih et.");
+        base.push("Öğün atlamamaya çalış.");
+      }
+
+      if (data.goal === "form_koruma") {
+        base.push("Dengeli tabak modeli uygula: protein + sebze + kontrollü karbonhidrat.");
+        base.push("Haftada birkaç gün yürüyüş ekle.");
+        base.push("Porsiyonları çok büyütmeden düzenli beslen.");
+      }
+
+      if (data.goal === "kondisyon") {
+        base.push("Antrenman öncesi hafif karbonhidrat alabilirsin.");
+        base.push("Terleme artacağı için su tüketimine dikkat et.");
+        base.push("Toparlanma için proteinli öğün ekle.");
+      }
+
+      if (data.nutrition === "ekonomik") {
+        base.push("Ekonomik seçenekler: yumurta, yoğurt, mercimek, nohut, bulgur, tavuk, mevsim sebzeleri.");
+      }
+
+      if (data.nutrition === "pratik") {
+        base.push("Pratik seçenekler: yoğurt+yulaf, omlet, ton balıklı salata, tavuklu sandviç, mercimek çorbası.");
+      }
+
+      if (data.nutrition === "protein") {
+        base.push("Protein seçenekleri: yumurta, tavuk, hindi, balık, yoğurt, kefir, peynir, baklagiller.");
+      }
+
+      if (data.nutrition === "hafif") {
+        base.push("Hafif seçenekler: sebze yemekleri, yoğurt, çorba, salata, ızgara protein kaynakları.");
+      }
+
+      base.push("Bu öneriler genel bilgilendirme amaçlıdır; özel sağlık durumlarında uzmana danış.");
+
+      return base;
+    }
+
+    function renderPlan(data) {
+      document.getElementById("resultSection").classList.remove("hidden");
+
+      document.getElementById("summary").innerHTML = `
+        <span class="tag">Rumuz: ${escapeHtml(data.nickname)}</span>
+        <span class="tag">Hedef: ${labelOf("goal", data.goal)}</span>
+        <span class="tag">Seviye: ${labelOf("level", data.level)}</span>
+        <span class="tag">Gün: ${data.days}</span>
+        <span class="tag">Yer: ${labelOf("place", data.place)}</span>
+      `;
+
+      const workout = data.workout || buildWorkout(data);
+      const meals = data.meals || buildNutrition(data);
+
+      document.getElementById("workoutPlan").innerHTML = workout.map(day => `
+        <div class="plan-day">
+          <h3>${day.day}: ${day.title}</h3>
+          <ul>${day.items.map(item => `<li>${item}</li>`).join("")}</ul>
+        </div>
+      `).join("");
+
+      document.getElementById("nutritionPlan").innerHTML = `
+        <ul>${meals.map(item => `<li>${item}</li>`).join("")}</ul>
+      `;
+    }
+
+    function generatePrompt() {
+      const data = getFormData();
+
+      const prompt = `Benim için genel bilgilendirme amaçlı 1 haftalık spor ve beslenme planı hazırla.
+
+Rumuz: ${data.nickname}
+Hedef: ${labelOf("goal", data.goal)}
+Seviye: ${labelOf("level", data.level)}
+Haftalık spor günü: ${data.days}
+Spor yeri: ${labelOf("place", data.place)}
+Beslenme tercihi: ${labelOf("nutrition", data.nutrition)}
+
+İstekler:
+- Gün gün spor programı ver.
+- Her egzersiz için set, tekrar veya süre yaz.
+- Yeni başlayanlar için güvenli ve basit hareketler seç.
+- Beslenme tarafında pratik ve uygulanabilir günlük öneriler ver.
+- Tıbbi tavsiye verme.
+- Kronik hastalık, sakatlık veya özel sağlık durumu varsa uzmana danışılması gerektiğini belirt.
+- Programı çok ağır yapma.
+- Alternatif egzersiz ve alternatif öğünler de ekle.`;
+
+      document.getElementById("promptSection").classList.remove("hidden");
+      document.getElementById("aiPrompt").value = prompt;
+    }
+
+    function copyPrompt() {
+      const text = document.getElementById("aiPrompt");
+      text.select();
+      document.execCommand("copy");
+      alert("Prompt kopyalandı.");
+    }
+
+    function clearData() {
+      if (confirm("Bu cihazdaki tüm FitPlan Mini verileri silinsin mi?")) {
+        localStorage.removeItem("fitplan-mini");
+        location.reload();
+      }
+    }
+
+    function escapeHtml(text) {
+      return text.replace(/[&<>"']/g, function (match) {
+        return {
+          "&": "&amp;",
+          "<​": "&lt;",
+          ">": "&gt;",
+          '"': "&quot;",
+          "'": "&#039;"
+        }[match];
+      });
+    }
+  </script>
+</body>
+</html>
